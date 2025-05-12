@@ -1,0 +1,31 @@
+.about-us-container {
+    display: flex;
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: center;
+    text-align: center;
+    padding: 100px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.vertical-section {
+    width: 80%;
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 102, 0, 0.1); /* Light highlight */
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    display: block; /* Ensures vertical stacking */
+}

@@ -1,0 +1,40 @@
+h1{
+    color: white;
+    font-family: Arial,sans-serif;
+    padding-left: 50px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Push navbar towards the right */
+    background-color: black;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: -30px; /* Shift navbar slightly left */
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 15px;
+}
+
+.navbar a:hover {
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    /* padding: 10px; */
+    background-color: #333;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+  }
+  

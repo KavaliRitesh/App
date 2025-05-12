@@ -1,0 +1,34 @@
+<div class="profile-container">
+  <div class="profile-card">
+    <img src="https://i.pravatar.cc/150?img=3" class="avatar" alt="User Avatar">
+    <h2>Palak Sharma</h2>
+    <p>Email: palak@example.com</p>
+    <p>Phone: +91-678905432</p>
+
+    <button [routerLink]="['/edit-profile']">Edit Profile</button>
+  </div>
+
+  <div class="history">
+    <h3>Booking History</h3>
+    <div class="book-card" *ngFor="let book of bookings">
+      <div class="book-header">
+        <div class="book-info">
+          <p class="book-date">{{ book.date }}</p>
+          <p class="book-type">{{ book.type }} <span *ngIf="book.city"></span></p>
+          <p class="book-city" *ngIf="book.city">{{ book.city }}</p>
+        </div>
+        <div class="book-right">
+          <p class="fare" *ngIf="book.fare">₹{{book.fare}}</p>
+          <div class="driver-icons">
+            <img [src]="book.vehicleImg" alt="car" class="vehicle-img">
+            <img [src]="book.AvaImg" alt="Icon" class="driver-img">
+          </div>
+        </div>
+      </div>
+      <div class="cancelled" *ngIf="book.status === 'cancelled'">
+        CANCELLED
+      </div>
+    </div>
+
+  </div>
+</div>
