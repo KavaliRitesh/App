@@ -4,8 +4,8 @@
     rental fleet. To contribute to positive change and achieve our sustainability goals with many extraordinary.</p>
 
 <div class="selectlocation">
-    <label style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;">Select-Location:</label>
-    <select [(ngModel)]="selectlocation" name="location">
+    <label style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;" for="city">Select-Location:</label>
+    <select id="city" [(ngModel)]="selectedCity" (change)="onCityChange($event)" class="form-control" required>
         <option value='' disabled hidden>select location</option>
         <option *ngFor="let location of locations">{{location}}</option>
     </select>
@@ -17,7 +17,7 @@
 </div>
 
 
-<div *ngIf='selectedcars' class="car2"> 
+<div *ngIf='selectedcars' class="car2">
     <div>
         <img [src]="selectedcars.photo" alt="{{selectedcars.name}}" class="c2">
     </div>

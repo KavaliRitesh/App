@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
-  <h1>Select your Ride</h1>
+  <h1>Car Rental</h1>
   <div class="row">
     <div class="col-md-3">
       <h4>Filter by Car Type</h4>
@@ -18,9 +18,9 @@
         <label for="car-type">Select Car Type:</label>
         <select id="car-type" [(ngModel)]="selectedType" class="form-control">
           <option value="all">All</option>
-          <option value="basic">Basic</option>
-          <option value="mid-range">Mid-Range</option>
-          <option value="high-end">High-End</option>
+          <option value="basic">Economic</option>
+          <option value="mid-range">Premier</option>
+          <option value="high-end">Luxury</option>
         </select>
       </div>
       <h4>Filter by Gear Type</h4>
@@ -33,6 +33,7 @@
         </select>
       </div>
     </div>
+    <h1>location:{{city}}</h1>
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-4" *ngFor="let car of filteredCars">
@@ -54,6 +55,7 @@
               <p>Rental Cost: ₹{{ calculateRentalCost(car) }}</p>
               <p>Loyalty Points: {{ calculateLoyaltyPoints(car) }}</p>
               <p>Extra Discount Rides: {{ car.extraDiscountRides || 0 }}</p>
+              <button class="btn btn-primary" (click)="bookCar(car)">Book Now</button>
             </div>
           </div>
         </div>

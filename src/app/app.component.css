@@ -1,7 +1,8 @@
-h1{
+p{
     color: white;
     font-family: Arial,sans-serif;
     padding-left: 50px;
+    font-weight: bold;
 }
 
 .navbar {
@@ -9,11 +10,13 @@ h1{
     justify-content: space-between; /* Push navbar towards the right */
     background-color: black;
     padding: 15px;
+    /* padding-left: 1300px; */
     position: fixed;
     width: 100%;
     top: 0;
     left: -30px; /* Shift navbar slightly left */
     z-index: 1000;
+    align-items: center;
 }
 
 .navbar a {
@@ -36,5 +39,6 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+    z-index: 1000;
   }
   

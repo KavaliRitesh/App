@@ -17,6 +17,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { FurtherRentalsComponent } from './further-rentals/further-rentals.component';
 
 const routes: Routes=[
   {path:'', redirectTo:'home',pathMatch:'full'},
@@ -30,7 +31,9 @@ const routes: Routes=[
   {path: 'about-us', component: AboutUsComponent},
   {path: 'contact-us', component: ContactUsComponent},
   {path: 'profile', component: ProfileComponent},
-  {path:'edit-profile',component:EditProfileComponent}
+  {path:'edit-profile',component:EditProfileComponent},
+  {path:'cancelbooking',component:CancelbookingComponent},
+  {path: 'further-rentals',component:FurtherRentalsComponent}
 ];
 
 @NgModule({
