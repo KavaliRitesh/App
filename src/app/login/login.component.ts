@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   captcha: string = this.generateCaptcha();
 
-  constructor(private fb: FormBuilder, private router: Router){
+  constructor(private fb: FormBuilder, private router: Router, private authService:AuthService){
     this.loginForm = this.fb.group({
       email:['',[Validators.required,Validators.email]],
       password:['',Validators.required],
@@ -37,5 +38,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.router.navigate(['/home']);
     }
+    this.authService.login();
+    this.router.navigate(['/']);
   }
 }

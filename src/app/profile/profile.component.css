@@ -35,6 +35,7 @@ p {
 button {
   margin-top: 1rem;
   padding: 0.6rem 1.2rem;
+  margin: 10px;
   background: #007bff;
   color: #fff;
   border: none;

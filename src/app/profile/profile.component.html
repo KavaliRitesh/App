@@ -1,11 +1,12 @@
 <div class="profile-container">
   <div class="profile-card">
-    <img src="https://i.pravatar.cc/150?img=3" class="avatar" alt="User Avatar">
+    <img src="assets/profile.png" class="avatar" alt="User Avatar">
     <h2>Palak Sharma</h2>
     <p>Email: palak@example.com</p>
     <p>Phone: +91-678905432</p>
 
     <button [routerLink]="['/edit-profile']">Edit Profile</button>
+    <button [routerLink]="['/cancelbooking']">Cancel Booking</button>
   </div>
 
   <div class="history">
@@ -21,7 +22,6 @@
           <p class="fare" *ngIf="book.fare">₹{{book.fare}}</p>
           <div class="driver-icons">
             <img [src]="book.vehicleImg" alt="car" class="vehicle-img">
-            <img [src]="book.AvaImg" alt="Icon" class="driver-img">
           </div>
         </div>
       </div>

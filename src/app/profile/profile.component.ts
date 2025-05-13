@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +15,6 @@ export class ProfileComponent implements OnInit{
       city: 'Lucknow',
       fare: '200',
       vehicleImg: 'https://img.icons8.com/ios-filled/50/car--v1.png',
-      AvaImg: 'https://i.pravatar.cc/40?img=5',
       status: ''
     },
     {
@@ -24,7 +23,6 @@ export class ProfileComponent implements OnInit{
       city: 'Pune',
       fare: '342',
       vehicleImg: 'https://img.icons8.com/ios-filled/50/car--v1.png',
-      AvaImg: 'https://i.pravatar.cc/40?img=6',
       status: ''
     },
     {
@@ -33,7 +31,6 @@ export class ProfileComponent implements OnInit{
       city: 'Banglore',
       fare: '404',
       vehicleImg: 'https://img.icons8.com/ios-filled/50/car--v2.png',
-      AvaImg: 'https://i.pravatar.cc/40?img=7',
       status: ''
     },
     {
@@ -42,7 +39,6 @@ export class ProfileComponent implements OnInit{
       city: 'Mumbai',
       fare: '225',
       vehicleImg: 'https://img.icons8.com/ios-filled/50/car--v2.png',
-      AvaImg: 'https://i.pravatar.cc/40?img=8',
       status: ''
     },
     {
@@ -51,7 +47,6 @@ export class ProfileComponent implements OnInit{
       city: 'Hyderabad',
       fare: '',
       vehicleImg: 'https://img.icons8.com/ios-filled/50/car--v2.png',
-      AvaImg: 'https://i.pravatar.cc/40?img=9',
       status: 'cancelled'
     },
     {
@@ -60,12 +55,13 @@ export class ProfileComponent implements OnInit{
       city: 'Andhra Pradesh',
       fare: '',
       vehicleImg: 'https://img.icons8.com/ios-filled/50/car--v2.png',
-      AvaImg: 'https://i.pravatar.cc/40?img=10',
       status: 'cancelled'
     }
   ];
 
   constructor() { }
+
+ 
 
   ngOnInit(): void {
     // Here you can fetch real booking data later from backend/API
