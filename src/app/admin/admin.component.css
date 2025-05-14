@@ -1,62 +1,41 @@
-/* General Page Styling */
-/* body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  } */
-  
-  /* Dashboard Container */
-  div {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    text-align: center;
-  }
-  
-  /* Headings */
-  h2 {
-    color: #007bff;
-    margin-bottom: 15px;
-  }
-  
-  h3 {
-    color: #333;
-    margin-top: 20px;
-  }
-  
-  /* Buttons */
-  button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.3s ease;
-  }
-  
-  button:hover {
-    background: #0056b3;
-  }
-  
-  /* Input Field */
-  input[type="number"] {
-    width: 80%;
-    padding: 8px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Spacing between sections */
-  h3, button, input {
-    margin-bottom: 10px;
-  }
-  
+.admin-container {
+  text-align: center;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  padding-top:50px;
+}
+
+h2 {
+  color: #343a40;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #6c757d;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  gap: 30px;
+}
+
+button {
+  padding: 10px 15px;
+  width: 1000px;
+  font-size: 16px;
+  /* background-color: #007bff; */
+  color: black;
+  border: 1px solid skyblue;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #f3e1ba;
+}

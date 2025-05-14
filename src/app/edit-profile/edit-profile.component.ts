@@ -15,14 +15,13 @@ export class EditProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileForm = this.fb.group({
       name: ['Palak Sharma', Validators.required],
-      email: [{ value: 'palak@example.com', disabled: true }],
-      phone: [{ value: '+91-678905432', disabled: true }],
-      city: ['Delhi', Validators.required],
-      avatar: ['https://randomuser.me/api/portraits/women/44.jpg'],
+      email: ['palak@example.com', Validators.required],
+      phone: ['+91-678905432', Validators.required ],
+      avatar: ['assets/profile.png'],
     });
   }
   changePassword(): void {
-    this.router.navigate(['/forgetpassword']);// when integrated will be directed to reset password page
+    this.router.navigate(['/changepassword']);// when integrated will be directed to reset password page
   }
   onSubmit() {
     if (this.profileForm.valid) {

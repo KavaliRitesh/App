@@ -53,7 +53,6 @@ button:hover {
   align-items: center; /* ✅ Align icons and text in a straight line */
   justify-content: center;
   gap: 20px; /* ✅ Adds uniform space between elements */
-  margin-top: 20px;
 }
 
 .social-media h3 {

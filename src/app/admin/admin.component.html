@@ -1,13 +1,13 @@
-<div>
+<div class="admin-container">
     <h2>Admin Dashboard</h2>
-
-    <h3>Manage Cars</h3>
-    <button (click)="manageCars()">Manage Cars</button>
-
-    <h3>View Rentals</h3>
-    <button (click)="viewRentals()">View Rentals</button>
-
-    <h3>View User Rental History</h3>
-    <input type="number" placeholder="User ID" #userIdInput>
-    <button (click)="viewRentalHistory()">View History</button>
-</div>
+    <p>Welcome, Admin! Choose an option below:</p>
+  
+    <div class="button-container">
+      
+      <button (click)="viewRentals()">View Rentals</button>
+      <button (click)="userHistory()">User History</button>
+      <button (click)="deleteCars()">Delete Cars</button>
+      <button (click)="updateCars()">Update Cars</button>
+    </div>
+  </div>
+  

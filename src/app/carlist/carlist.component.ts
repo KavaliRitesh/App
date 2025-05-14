@@ -10,7 +10,7 @@ interface Car {
   name: string;
   image: string;
   model: string;
-  type: 'economic' | 'primere' | 'luxury';
+  type: 'economy' | 'premier' | 'luxury';
   rentalDetails: RentalDetails;
   userDistance?: number;
   rentalDays?: number;
@@ -32,27 +32,31 @@ export class CarlistComponent {
     selectedCity: string = 'all';
     city: string = 'All';
     carname:string='';
+    car1:string='';
   
     constructor(private sharedService: SharedService) {}
   
     ngOnInit(): void {
-      const { city, carname } = this.sharedService.getCityAndCar();
+      const { city, carname,car1 } = this.sharedService.getCityAndCar();
     this.city = city;
     this.carname = carname;
+    this.car1=car1;
     }
   
+    ctype='luxury';
+ 
     cars: Car[] = [
-      { name: 'Car 1', image: './assets/suv6.jfif', model: 'Model 1', type: 'economic', rentalDetails: { pricePerKm: 10, discount: 20, perDayCost: 500 }, details: 'Economical and fuel-efficient', gearType: 'manual', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 },
-      { name: 'Car 2', image: './assets/suv1.jfif', model: 'Model 2', type: 'primere', rentalDetails: { pricePerKm: 12, discount: 25, perDayCost: 700 }, details: 'Comfortable and spacious', gearType: 'automatic', isFrequentRenter: false, loyaltyPoints: 0, extraDiscountRides: 0 },
-      { name: 'Car 3', image: './assets/suv2.jfif', model: 'Model 3', type: 'luxury', rentalDetails: { pricePerKm: 15, discount: 30, perDayCost: 1000 }, details: 'Luxury and high performance', gearType: 'automatic', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 },
-      { name: 'Car 4', image: './assets/suv3.jfif', model: 'Model 4', type: 'economic', rentalDetails: { pricePerKm: 10, discount: 20, perDayCost: 500 }, details: 'Economical and fuel-efficient', gearType: 'automatic', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 },
-      { name: 'Car 5', image: './assets/suv4.jfif', model: 'Model 1', type: 'primere', rentalDetails: { pricePerKm: 10, discount: 20, perDayCost: 500 }, details: 'Economical and fuel-efficient', gearType: 'manual', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 },
-      { name: 'Car 6', image: './assets/suv5.jfif', model: 'Model 3', type: 'luxury', rentalDetails: { pricePerKm: 10, discount: 20, perDayCost: 500 }, details: 'Economical and fuel-efficient', gearType: 'manual', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 }
-    ];
-  
+        { name: 'Car 1', image: './assets/suv6.jfif', model: 'Model 1', type: 'economy', rentalDetails: { pricePerKm: 10, discount: 20, perDayCost: 500 }, details: 'Economical and fuel-efficient', gearType: 'manual', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 },
+        { name: 'Car 2', image: './assets/suv1.jfif', model: 'Model 2', type: 'premier', rentalDetails: { pricePerKm: 12, discount: 25, perDayCost: 700 }, details: 'Comfortable and spacious', gearType: 'automatic', isFrequentRenter: false, loyaltyPoints: 0, extraDiscountRides: 0 },
+        { name: 'Car 3', image: './assets/suv2.jfif', model: 'Model 3', type: 'luxury', rentalDetails: { pricePerKm: 15, discount: 30, perDayCost: 1000 }, details: 'Luxury and high performance', gearType: 'automatic', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 },
+        { name: 'Car 4', image: './assets/suv3.jfif', model: 'Model 4', type: 'economy', rentalDetails: { pricePerKm: 10, discount: 20, perDayCost: 500 }, details: 'Economical and fuel-efficient', gearType: 'automatic', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 },
+        { name: 'Car 5', image: './assets/suv4.jfif', model: 'Model 1', type: 'premier', rentalDetails: { pricePerKm: 10, discount: 20, perDayCost: 500 }, details: 'Comfortable and spacious', gearType: 'manual', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 },
+        { name: 'Car 6', image: './assets/suv5.jfif', model: 'Model 3', type: 'luxury', rentalDetails: { pricePerKm: 10, discount: 20, perDayCost: 500 }, details: 'Luxury and high performance', gearType: 'manual', isFrequentRenter: true, loyaltyPoints: 0, extraDiscountRides: 0 }
+      ];
+ 
     get filteredCars(): Car[] {
-      return this.cars.filter(car => 
-        (this.selectedType === 'all' || car.type === this.selectedType) &&
+      return this.cars.filter(car =>
+        (car.type === this.ctype) &&
         (this.selectedGearType === 'all' || car.gearType === this.selectedGearType)
       );
     }
@@ -68,10 +72,10 @@ export class CarlistComponent {
       // Determine tax rate based on car type
       let taxRate = 0;
       switch (car.type) {
-        case 'economic':
+        case 'economy':
           taxRate = 0.10;
           break;
-        case 'primere':
+        case 'premier':
           taxRate = 0.20;
           break;
         case 'luxury':

@@ -12,13 +12,17 @@
   text-align: center;
 }
 
-.selectlocation1 select {
-  padding: 6px;
-  margin-left: 5px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  cursor: pointer;
-
+.selectlocation1 select,
+.date input,
+.category select{
+  padding: 10px;
+  margin: 5px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: Georgia;
+  min-width: 200px;
+  color: #666;
 }
 
 .date {
@@ -32,17 +36,22 @@
   margin: 5px;
   width: 100px;
   padding: 10px;
-  background-color: rgb(243, 238, 229);
+ /* background-color: rgb(243, 238, 229); */
   color: black;
-
   border: 1px solid rgb(243, 241, 236);
   border-radius: 10px;
   cursor: pointer;
   transition: 0.5s;
 }
-
-.car1 button:hover {
-  background-color: orange;
+.car1 button:disabled{
+  background-color:none;
+  cursor: not-allowed;
+}
+.car1 button:not(:disabled)
+{
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
 }
 
 .car2
@@ -86,6 +95,7 @@
 .cardetails h3 {
   /*car h3*/
   /* background-color: #007bff;*/
+  text-align: center;
   margin-left: 35px;
   margin-top: 50px;
   margin-bottom: 0px;

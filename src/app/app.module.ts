@@ -11,14 +11,13 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { VehicletypesComponent } from './vehicletypes/vehicletypes.component';
 import { CarlistComponent } from './carlist/carlist.component';
 import { CancelbookingComponent } from './cancelbooking/cancelbooking.component';
-import { PreviousRentalsComponent } from './previous-rentals/previous-rentals.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { FurtherRentalsComponent } from './further-rentals/further-rentals.component';
 import { AdminComponent } from './admin/admin.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 const routes: Routes=[
   {path:'', redirectTo:'home',pathMatch:'full'},
@@ -28,14 +27,13 @@ const routes: Routes=[
   {path:'forgetpassword',component:ForgetpasswordComponent},
   {path:'vehicletypes',component:VehicletypesComponent},
   {path:'carlist',component:CarlistComponent},
-  {path:'history',component:PreviousRentalsComponent},
   {path: 'about-us', component: AboutUsComponent},
   {path: 'contact-us', component: ContactUsComponent},
   {path: 'profile', component: ProfileComponent},
   {path:'edit-profile',component:EditProfileComponent},
   {path:'cancelbooking',component:CancelbookingComponent},
-  {path: 'further-rentals',component:FurtherRentalsComponent},
-  {path: 'admin',component:AdminComponent}
+  {path: 'admin',component:AdminComponent},
+  {path:'changepassword',component:ChangepasswordComponent}
 ];
 
 @NgModule({
@@ -47,13 +45,13 @@ const routes: Routes=[
     ForgetpasswordComponent,
     VehicletypesComponent,
     CancelbookingComponent,
-    PreviousRentalsComponent,
     CarlistComponent,
     AboutUsComponent,
     ContactUsComponent,
     ProfileComponent,
     EditProfileComponent,
-    AdminComponent
+    AdminComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,

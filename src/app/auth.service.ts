@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import  { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class AuthService {
    
   isLoggedIn$ = this.loggedIn.asObservable();
 
-  constructor() { 
+  constructor(private router: Router) { 
     const saved = localStorage.getItem('isLoggedIn');
     if(saved === 'true'){
       this.loggedIn.next(true);
@@ -24,6 +25,7 @@ export class AuthService {
   logout(){
     this.loggedIn.next(false);
     localStorage.setItem('isLOggedIn', 'true');
+    this.router.navigate(['/home']);
   }
 
   

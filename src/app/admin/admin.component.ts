@@ -1,42 +1,33 @@
-import { Component, OnInit } from "@angular/core";
-import { Car, Rental } from "../adminmodels";
-import { CarService } from "../services/car.service";
-import { RentalService } from "../services/rental.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-dashboard',
+  selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'] // If you have CSS
+  styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
-  cars: Car[] = [];
-  rentals: Rental[] = [];
-  userId:number=1234;
+export class AdminComponent  {
+  constructor( private router: Router) {}
 
-  constructor(private carService: CarService, private rentalService: RentalService) {}
+  // ngOnInit() {
+  //   // Check if the admin is authenticated
+  //     this.router.navigate(['/login']); // Redirect to login if not authenticated
+  // }
 
-  ngOnInit() {
-    this.loadCars();
-    this.loadRentals();
+  // Navigate to different sections
+  deleteCars() {
+    this.router.navigate(['/admin/manage-cars']);
   }
 
-  loadCars() {
-    this.cars = this.carService.getCars();
-  }
+  updateCars(){
 
-  loadRentals() {
-    this.rentals = this.rentalService.getRentals();
-  }
-
-  manageCars() {
-    console.log("Managing cars...");
   }
 
   viewRentals() {
-    console.log("Viewing rentals...");
+    this.router.navigate(['/admin/rentals']);
   }
 
-  viewRentalHistory() {
-    return this.rentals.filter(r => r.userId === this.userId);
+  userHistory() {
+    this.router.navigate(['/admin/user-history']);
   }
 }
