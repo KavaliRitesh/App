@@ -25,7 +25,6 @@ export class EditProfileComponent implements OnInit {
   }
   onSubmit() {
     if (this.profileForm.valid) {
-      console.log('Updated Profile:', this.profileForm.getRawValue());
       this.router.navigate(['/profile']);
     }
   }

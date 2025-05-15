@@ -20,7 +20,10 @@
         <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" required>
         <small *ngIf="hasPasswordMismatch" style="color: red;">Passwords do not match!</small>
 
-        <div class="captcha">Captcha: <span>{{captcha}}</span></div>
+        <div class="captcha">Captcha: <span>{{captcha}}</span>
+        <button type="button" (click)="refreshCaptcha()" class="refresh">
+            <img src="assets/reload.png" alt="reload">
+        </button></div>
         <input type="text" placeholder="Enter Captcha" formControlName="captchaInput" required>
         <small *ngIf="hasCaptchaMismatch" style="color: red;">Captcha is incorrect. Please try again.</small>
         <button type="submit">Signup</button>

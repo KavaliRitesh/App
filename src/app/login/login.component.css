@@ -84,3 +84,13 @@ span{
     padding: 3px;
     font-style: italic;
 }
+
+img{
+  width:20px;
+  height: 20px;
+}
+
+button[type="button"]{
+  background: none;
+  border: none;
+}

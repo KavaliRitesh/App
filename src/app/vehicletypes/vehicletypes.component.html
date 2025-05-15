@@ -7,7 +7,7 @@
 
 <!-- selecting a location -->
 <div class="selectlocation1">
-    <label style="font-size: 20px; font-family: Arial, Helvetica, sans-serif;">Select-Location:</label>
+    <label style="font-size: 20px;">Select Location:</label>
     <select [(ngModel)]="selectlocation">
         <option value="" disabled hidden>select location</option>
         <option *ngFor="let location of locations">{{location}}</option>

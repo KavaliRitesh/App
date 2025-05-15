@@ -26,19 +26,19 @@ export class SignupComponent {
     return this.signupForm.get('password')?.value || '';
   }
 
-  get hasMinLength() { 
-    return this.password.length >= 8 && this.password.length <= 12; 
-  } 
-  
-  get hasUppercase() { 
-    return /[A-Z]/.test(this.password); 
-  } 
-  get hasAlphanumeric() { 
-    return /[a-zA-Z]/.test(this.password) && /\d/.test(this.password); 
-  } 
-  
-  get hasSpecialChar() { 
-    return /[!@#$%^&*]/.test(this.password); 
+  get hasMinLength() {
+    return this.password.length >= 8 && this.password.length <= 12;
+  }
+
+  get hasUppercase() {
+    return /[A-Z]/.test(this.password);
+  }
+  get hasAlphanumeric() {
+    return /[a-zA-Z]/.test(this.password) && /\d/.test(this.password);
+  }
+
+  get hasSpecialChar() {
+    return /[!@#$%^&*]/.test(this.password);
   }
 
   get confirmPassword() {
@@ -61,6 +61,10 @@ export class SignupComponent {
     return Math.random().toString(36).substring(2, 8);
   }
 
+  refreshCaptcha(): void {
+    this.captcha = this.generateCaptcha();
+  }
+  
   onSubmit() {
     if (this.signupForm.invalid) {
       return;

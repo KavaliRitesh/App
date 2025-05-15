@@ -11,7 +11,7 @@ export class ContactUsComponent {
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(4)]], // Name must be at least 3 characters
+      name: ['', [Validators.required, Validators.minLength(5)]], // Name must be at least 3 characters
       email: ['', [Validators.required, Validators.email]], // Valid email required
       message: ['', [Validators.required, Validators.minLength(10)]] // Message must be at least 10 characters
     });
@@ -25,7 +25,7 @@ export class ContactUsComponent {
         errorMessage += '❌ Name is required.\n';
       }
       if (this.contactForm.controls['name'].hasError('minlength')) {
-        errorMessage += '❌ Name must be at least 4 characters.\n';
+        errorMessage += '❌ Name must be at least 5 characters.\n';
       }
 
       if (this.contactForm.controls['email'].hasError('required')) {

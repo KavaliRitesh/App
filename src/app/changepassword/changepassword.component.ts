@@ -43,11 +43,13 @@ export class ChangepasswordComponent {
 
   onReset(){
      if (this.changePassword.invalid) {
+      this.changePassword.markAllAsTouched();
       return;
     }
 
     else {
       alert('Password Updated');
+      this.router.navigate(['/profile']);
     }
   }
 }

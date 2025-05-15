@@ -10,8 +10,16 @@
   </div>
 
   <div class="history">
-    <h3>Booking History</h3>
-    <div class="book-card" *ngFor="let book of bookings">
+    <div class="form-group">
+      <label for="car-type">Booking History:</label>
+      <select id="car-type" [(ngModel)]="check" class="form-control">
+        <option value="all">All</option>
+        <option value="Active">Active</option>
+        <option value="Completed">Completed</option>
+        <option value="cancelled">cancelled</option>
+      </select>
+    </div>
+    <div class="book-card" *ngFor="let book of filteredCars">
       <div class="book-header">
         <div class="book-info">
           <p class="book-date">{{ book.date }}</p>
@@ -19,7 +27,7 @@
           <p class="book-city" *ngIf="book.city">{{ book.city }}</p>
         </div>
         <div class="book-right">
-          <p class="fare" *ngIf="book.fare">₹{{book.fare}}</p>
+          <p class="fare" *ngIf="book.fare">₹{{ book.fare }}</p>
           <div class="driver-icons">
             <img [src]="book.vehicleImg" alt="car" class="vehicle-img">
           </div>
@@ -28,7 +36,12 @@
       <div class="cancelled" *ngIf="book.status === 'cancelled'">
         CANCELLED
       </div>
+      <div class="cancelled" *ngIf="book.status === 'Active'">
+        ACTIVE RIDE
+      </div>
+      <div class="cancelled" *ngIf="book.status === 'Completed'">
+        COMPLETED RIDE
+      </div>
     </div>
-
   </div>
 </div>

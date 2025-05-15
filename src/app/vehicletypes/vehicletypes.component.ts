@@ -46,7 +46,7 @@ public selectcar(car: any) {
   }
     public booknow() {
     this.sharedService.setCityAndCar(this.selectlocation, this.selectedcars.name, this.selectcategory);
-    console.log('City and Car set in shared service:', this.selectlocation, this.selectedcars.name,this.selectcategory);
+    // console.log('City and Car set in shared service:', this.selectlocation, this.selectedcars.name,this.selectcategory);
     this.router.navigate(['/carlist']);
   }
 }
