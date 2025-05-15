@@ -1,0 +1,152 @@
+//login css
+
+.form-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #d3d3d3;
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+span{
+    background-color: #fcfbfb; 
+    border: none;
+    padding: 5px;
+    font-style: italic;
+}
+
+//signup css
+
+.form-container {
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #d3d3d3;
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+span{
+    background-color: #fcfbfb; 
+    border: none;
+    padding: 5px;
+    font-style: italic;
+}
+
+//forget-password css
+
+.form-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #d3d3d3;
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+//app.component.ts
+
+import { Component } from '@angular/core';
+import { AuthService } from './auth.service'
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'carzy';
+  currentYear: number = new Date().getFullYear();
+
+  isLoggedIn = false;
+
+  constructor(private authService: AuthService){}
+
+  ngOnInit(){
+    this.authService.isLoggedIn$.subscribe(status => {
+      this.isLoggedIn = status;
+      console.log('Login status updated in AppComponent:', status)
+    });
+  }
+
+  logout(){
+    this.authService.logout();
+  }
+}
+
+
+//app.module.ts
+
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+
+
+//auth.guard.ts
+
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(): Observable<boolean> {
+    return this.authService.isLoggedIn$.pipe(
+      map(isLoggedIn => {
+        if (!isLoggedIn) {
+          this.router.navigate(['/home']);
+          return false;
+        }
+        return true;
+      })
+    );
+  }
+}
+
+
+//auth.service.ts
+
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = this.loggedIn.asObservable();
+
+  constructor(private router: Router) {
+    const saved = localStorage.getItem('isLoggedIn');
+    if (saved === 'true') {
+      this.loggedIn.next(true);
+    }
+  }
+
+  login() {
+    this.loggedIn.next(true);
+    localStorage.setItem('isLoggedIn', 'true');
+  }
+
+  logout() {
+    this.loggedIn.next(false);
+    localStorage.setItem('isLoggedIn', 'false');
+    this.router.navigateByUrl('/home', { replaceUrl: true });
+  }
+}
+
+
+//profile.component.ts
+
+ constructor(private authService: AuthService) {}
+  logout() {
+    this.authService.logout();
+  }
+
+//
