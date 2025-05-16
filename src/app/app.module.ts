@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes=[
   {path:'', redirectTo:'home',pathMatch:'full'},
@@ -29,7 +30,7 @@ const routes: Routes=[
   {path:'carlist',component:CarlistComponent},
   {path: 'about-us', component: AboutUsComponent},
   {path: 'contact-us', component: ContactUsComponent},
-  {path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {path:'edit-profile',component:EditProfileComponent},
   {path:'cancelbooking',component:CancelbookingComponent},
   {path: 'admin',component:AdminComponent},

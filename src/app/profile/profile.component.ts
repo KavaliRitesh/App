@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
  
 interface book {
   date: any;
@@ -67,8 +68,11 @@ export class ProfileComponent implements OnInit {
     }
   ];
  
-  constructor() {}
- 
+  constructor(private authService: AuthService) {}
+  logout() {
+    this.authService.logout();
+  }
+   
   ngOnInit(): void {
     // Here you can fetch real booking data later from backend/API
   }
