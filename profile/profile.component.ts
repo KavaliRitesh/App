@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-interface book{
-  date:any;
-  type:string;
-  city:string;
-  fare:number;
+import { AuthService } from '../auth.service';
+ 
+interface book {
+  date: any;
+  type: string;
+  city: string;
+  fare: number;
   vehicleImg: string;
-  status:string;
+  status: string;
 }
-
+ 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit{
-  check:string='Active';
-  bookings = [
+export class ProfileComponent implements OnInit {
+  check: string = 'Active';
+  bookings: book[] = [
     {
-      //sample bookings
       date: 'Sat, Mar 29, 01:09 PM',
       type: 'Alto',
       city: 'Lucknow',
@@ -68,19 +67,23 @@ export class ProfileComponent implements OnInit{
       status: 'cancelled'
     }
   ];
-
-  constructor() { }
-
  
-
+  constructor(private authService: AuthService) {}
+  logout() {
+    this.authService.logout();
+  }
+   
   ngOnInit(): void {
     // Here you can fetch real booking data later from backend/API
   }
-
+ 
+  cancelBooking(book: any): void {
+    book.status = 'cancelled';
+    // Optionally, update the backend or local storage here
+  }
+  
   get filteredCars(): book[] {
-    return this.bookings.filter(bookings =>
-      (bookings.status === this.check) 
-      // (this.selectedGearType === 'all' || car.gearType === this.selectedGearType)
-    );
+    return this.bookings.filter(book =>
+      this.check === 'all' || book.status === this.check);
   }
 }

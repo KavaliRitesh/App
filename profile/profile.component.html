@@ -6,15 +6,19 @@
     <p>Phone: +91-678905432</p>
 
     <button [routerLink]="['/edit-profile']">Edit Profile</button>
-    <button [routerLink]="['/cancelbooking']">Cancel Booking</button>
   </div>
 
   <div class="history">
-    <h3>Booking History</h3>
-    <div>
-      <button (click)="filteredCars">Click me</button>
+    <div class="form-group">
+      <label for="car-type">Booking History:</label>
+      <select id="car-type" [(ngModel)]="check" class="form-control">
+        <option value="all">All</option>
+        <option value="Active">Active</option>
+        <option value="Completed">Completed</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
     </div>
-    <div class="book-card" *ngFor="let book of bookings">
+    <div class="book-card" *ngFor="let book of filteredCars">
       <div class="book-header">
         <div class="book-info">
           <p class="book-date">{{ book.date }}</p>
@@ -22,23 +26,22 @@
           <p class="book-city" *ngIf="book.city">{{ book.city }}</p>
         </div>
         <div class="book-right">
-          <p class="fare" *ngIf="book.fare">₹{{book.fare}}</p>
+          <p class="fare" *ngIf="book.fare">₹{{ book.fare }}</p>
           <div class="driver-icons">
             <img [src]="book.vehicleImg" alt="car" class="vehicle-img">
           </div>
         </div>
       </div>
-      
-      <div class="cancelled" *ngIf="book.status === 'cancelled'">
+      <div class="cancelled" *ngIf="book.status === 'cancelled'" style="color: red;font-weight: bold;">
         CANCELLED
       </div>
-      <div class="cancelled" *ngIf="book.status === 'Active'">
+      <div class="cancelled" *ngIf="book.status === 'Active'" style="color: orange;font-weight: bold;">
         ACTIVE RIDE
+        <button (click)="cancelBooking(book)" class="cancel">Cancel Booking</button>
       </div>
-      <div class="cancelled" *ngIf="book.status === 'Completed'">
+      <div class="cancelled" *ngIf="book.status === 'Completed'" style="color: green;font-weight: bold;">
         COMPLETED RIDE
       </div>
     </div>
-
   </div>
 </div>
