@@ -1,0 +1,93 @@
+<div class="admin-container">
+  <h2>Admin Dashboard</h2>
+  <p>Welcome, Admin! Manage Cars Below:</p>
+</div>
+
+<div class="page-content">
+  <div>
+    <h3 class="hello">Manage Cars</h3>
+    <div class="row">
+      <div class="car-card" *ngFor="let car of cars">
+        <div *ngIf="editingCarId === car._id; else viewMode">
+          <!-- Edit Mode -->
+          <div *ngIf="car.imageUrl && car.imageUrl.length">
+            <img *ngFor="let url of car.imageUrl"
+                 [src]="url"
+                 alt="Car image"
+                 style="width: 520px; height: 300px; margin-bottom:8px;">
+          </div>
+          <div class="form-group">
+            <label for="make-{{ car._id }}">Make:</label>
+            <input type="text" id="make-{{ car._id }}" [(ngModel)]="car.make" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="model-{{ car._id }}">Model:</label>
+            <input type="text" id="model-{{ car._id }}" [(ngModel)]="car.model" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="cartype-{{ car._id }}">Car Type:</label>
+            <input type="text" id="cartype-{{ car._id }}" [(ngModel)]="car.cartype" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="carCategory-{{ car._id }}">Car Category:</label>
+            <input type="text" id="carCategory-{{ car._id }}" [(ngModel)]="car.carCategory" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="year-{{ car._id }}">Year:</label>
+            <input type="number" id="year-{{ car._id }}" [(ngModel)]="car.year" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="pricePerKm-{{ car._id }}">Price Per Km:</label>
+            <input type="number" id="pricePerKm-{{ car._id }}" [(ngModel)]="car.pricePerKm" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="pricePerDay-{{ car._id }}">Price Per Day:</label>
+            <input type="number" id="pricePerDay-{{ car._id }}" [(ngModel)]="car.pricePerDay" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="availabilityStatus-{{ car._id }}">Availability Status:</label>
+            <input type="text" id="availabilityStatus-{{ car._id }}" [(ngModel)]="car.availabilityStatus" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label for="currentOdometer-{{ car._id }}">Current Odometer:</label>
+            <input type="number" id="currentOdometer-{{ car._id }}" [(ngModel)]="car.currentOdometer" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Features:</label>
+            <input *ngFor="let feature of car.features; let i = index"
+                   type="text"
+                   [(ngModel)]="car.features[i]"
+                   class="form-control"
+                   placeholder="Feature {{i+1}}"/>
+          </div>
+          <button (click)="saveCar(car)">Save</button>
+          <button (click)="cancelEdit()">Cancel</button>
+        </div>
+        <ng-template #viewMode>
+          <div *ngIf="car.imageUrl && car.imageUrl.length">
+            <img *ngFor="let url of car.imageUrl"
+                 [src]="url"
+                 alt="Car image"
+                 style="width: 520px; height: 300px; margin-bottom:8px;">
+          </div>
+          <p>Make: {{ car.make }}</p>
+          <p>Model: {{ car.model }}</p>
+          <p>Car Type: {{ car.cartype }}</p>
+          <p>Car Category: {{ car.carCategory }}</p>
+          <p>Year: {{ car.year }}</p>
+          <p>Price Per Km: {{ car.pricePerKm }}</p>
+          <p>Price Per Day: {{ car.pricePerDay }}</p>
+          <p>Availability Status: {{ car.availabilityStatus }}</p>
+          <p>Current Odometer: {{ car.currentOdometer }}</p>
+          <p>Features:
+            <span *ngFor="let feature of car.features; let i = index">
+              {{ feature }}<span *ngIf="i < car.features.length - 1">, </span>
+            </span>
+          </p>
+          <button (click)="enableEdit(car._id)">Edit</button>
+          <button (click)="deleteCar(car._id)">Delete</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
