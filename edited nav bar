@@ -1,0 +1,132 @@
+//auth.service.ts
+
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private loginUrl = 'http://localhost:3000/api/auth/login'; // Backend login endpoint
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = this.loggedIn.asObservable();
+
+
+  private userRole = new BehaviorSubject<string | null>(null);
+  userRole$ = this.userRole.asObservable();
+
+
+  constructor(private http: HttpClient, private router: Router) {
+    // Restore login state from localStorage
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+      this.loggedIn.next(true);
+    }
+
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.userRole.next(JSON.parse(user).role);
+    }
+
+  }
+
+  login(credentials: any): Observable<any> {
+    return this.http.post(this.loginUrl, credentials).pipe(
+      tap((response: any) => {
+        // Save login state and user info on successful login
+        this.loggedIn.next(true);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('token', response.token);
+        this.userRole.next(response.user.role);
+      })
+    );
+  }
+
+  logout(): void {
+    this.loggedIn.next(false);
+    localStorage.clear();
+    this.router.navigateByUrl('/home', { replaceUrl: true });
+  }
+
+  // Optional: get current user info
+  getCurrentUser() {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+  }
+}
+
+
+//app.component.ts
+
+import { Component } from '@angular/core';
+import { AuthService } from './auth.service'
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'carzy';
+  currentYear: number = new Date().getFullYear();
+
+  isLoggedIn = false;
+  userRole: string | null = null;
+
+  constructor(private authService: AuthService) { }
+
+
+  ngOnInit() {
+    this.authService.isLoggedIn$.subscribe(status => {
+      this.isLoggedIn = status;
+    });
+
+    this.authService.userRole$.subscribe(role => {
+      this.userRole = role;
+    });
+  }
+
+
+  logout() {
+    this.authService.logout();
+  }
+}
+
+
+//app.component.html
+
+
+<header>
+    <nav class="navbar">
+        <a routerLink="/">
+            <p>Carzy</p>
+        </a>
+        <div class="nav-right">
+            <a class="navbar-brand" routerLink="/">Home</a>
+            <a routerLink="/vehicletypes">Book a Ride </a>
+            <a routerLink="/about-us">About Us</a>
+            <a routerLink="/contact-us">Contact Us</a>
+
+            <ng-container *ngIf="!isLoggedIn; else loggedInBlock">
+                <a routerLink="/login">Login</a>
+                <a routerLink="/signup">Sign Up</a>
+            </ng-container>
+
+            <ng-template #loggedInBlock>
+                <a *ngIf="userRole === 'admin'" routerLink="/admin">Admin</a>
+                <a *ngIf="userRole === 'user'" routerLink="/profile">Profile</a>
+                <a (click)="logout()" style="cursor:pointer;">Logout</a>
+            </ng-template>
+
+        </div>
+    </nav>
+</header>
+<footer>
+    <h3>&copy; {{ currentYear }} Carzy Rentals. All Rights Reserved.</h3>
+</footer>
+
+<router-outlet></router-outlet>
